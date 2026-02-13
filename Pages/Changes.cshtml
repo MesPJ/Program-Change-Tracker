@@ -1,1 +1,17 @@
 @page
+@model ProgramChangeTracker.Pages.ChangesModel
+
+<h1>Program Changes</h1>
+
+@if (Model.Items.Count == 0){
+    <p>No change requests yet.</p>
+}
+else{
+    <ul>
+        @foreach (var item in Model.Items){
+            <li>
+                #@item.Id - <strong>@item.Title</strong> (@item.Status)
+            </li>
+        }
+    </ul>
+}
