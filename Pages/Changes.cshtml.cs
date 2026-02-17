@@ -17,6 +17,9 @@ public class ChangesModel : PageModel
     [BindProperty]
     public string Description {get; set;} = "";
 
+    [BindProperty]
+    public int Id {get; set;}
+
     public ChangesModel(ChangeRequestService service)
     {
         _service = service;
@@ -40,4 +43,6 @@ public class ChangesModel : PageModel
         _service.Add(Title, Description);
         return RedirectToPage();
     }
+
+    
 }

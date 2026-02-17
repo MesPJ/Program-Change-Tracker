@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProgramChangeTracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0acd368f480c82bb0d53161576b03488c6a85d40")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d77d1f937ad357ab59ce66cab34d0b59c2730be")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProgramChangeTracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProgramChangeTracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
