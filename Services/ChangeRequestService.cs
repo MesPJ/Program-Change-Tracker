@@ -13,6 +13,7 @@ public class ChangeRequestService
         return _items;
     }
 
+
     public ChangeRequest Add(string title, string description)
     {
         var item = new ChangeRequest
@@ -29,5 +30,14 @@ public class ChangeRequestService
         return item;
     }
 
+    public void Close(int id)
+    {
+        var item = _items.FirstOrDefault(x => x.Id == id);
+        if(item == null) return;
+
+        item.Status = "Closed";
+        item.UpdatedAt = DateTime.UtcNow;
+
+    }
 
 }

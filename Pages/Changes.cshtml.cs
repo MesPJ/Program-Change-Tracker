@@ -44,5 +44,9 @@ public class ChangesModel : PageModel
         return RedirectToPage();
     }
 
-    
+    public IActionResult OnPostClose()
+    {
+        _service.Close(Id);
+        return RedirectToPage();
+    }
 }
