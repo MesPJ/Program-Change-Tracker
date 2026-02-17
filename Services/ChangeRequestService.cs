@@ -21,7 +21,7 @@ public class ChangeRequestService
             Id = _nextId++,
             Title = title,
             Description = description, 
-            Status = "Open",
+            Status = ChangeStatus.Open,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };
@@ -35,7 +35,7 @@ public class ChangeRequestService
         var item = _items.FirstOrDefault(x => x.Id == id);
         if(item == null) return;
 
-        item.Status = "Closed";
+        item.Status = ChangeStatus.Closed;
         item.UpdatedAt = DateTime.UtcNow;
 
     }
@@ -45,7 +45,7 @@ public class ChangeRequestService
         var item = _items.FirstOrDefault(x => x.Id == id);
         if(item == null) return;
         
-        item.Status = "Open";
+        item.Status = ChangeStatus.Open;
         item.UpdatedAt = DateTime.UtcNow;
 
     }

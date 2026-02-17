@@ -1,6 +1,7 @@
 @page
 @using Microsoft.AspNetCore.Http.Features
 @model ProgramChangeTracker.Pages.ChangesModel
+@using ProgramChangeTracker.Models
 
 <h1>Program Changes</h1>
 
@@ -12,14 +13,14 @@ else{
         @foreach (var item in Model.Items){
             <li>
                 #@item.Id - <strong>@item.Title</strong> (@item.Status)
-                @if(item.Status == "Open")
+                @if(item.Status == ChangeStatus.Open)
                 {
                     <form method="post" asp-page-handler="Close" style="display:inline;">
                         <input type="hidden" name="Id" value="@item.Id" />
                         <button type="submit">Close</button>
                     </form>
                 }
-                @if(item.Status == "Closed")
+                @if(item.Status == ChangeStatus.Closed)
                 {
                     <form method="post" asp-page-handler="Reopen" style="display:inline;">
                         <input type="hidden" name="Id" value="@item.Id" />
