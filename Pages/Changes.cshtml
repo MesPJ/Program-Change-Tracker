@@ -11,6 +11,7 @@ else{
         @foreach (var item in Model.Items){
             <li>
                 #@item.Id - <strong>@item.Title</strong> (@item.Status)
+                <div>@item.Description</div>
             </li>
         }
     </ul>
@@ -18,7 +19,9 @@ else{
 
 <form method="post">
     <label>Title</label><br />
-    <input name="Title" />
+    <input name="Title" /><br />
+    <label>Description</label><br />
+    <textarea name = "Description"></textarea><br />
     <button type="submit">Add</button>
 </form>
 

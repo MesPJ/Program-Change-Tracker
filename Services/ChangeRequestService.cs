@@ -12,12 +12,13 @@ public class ChangeRequestService
         return _items;
     }
 
-    public ChangeRequest Add(string title)
+    public ChangeRequest Add(string title, string description)
     {
         var item = new ChangeRequest
         {
             Id = _nextId++,
             Title = title,
+            Description = description, 
             Status = "Open",
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow

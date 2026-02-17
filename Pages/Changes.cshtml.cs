@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProgramChangeTracker.Models;
 using ProgramChangeTracker.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace ProgramChangeTracker.Pages;
 
@@ -12,6 +13,9 @@ public class ChangesModel : PageModel
 
     [BindProperty] //binds variable to post from form
     public string Title {get; set;} = "";
+
+    [BindProperty]
+    public string Description {get; set;} = "";
 
     public ChangesModel(ChangeRequestService service)
     {
@@ -24,7 +28,7 @@ public class ChangesModel : PageModel
     {
         Items = _service.GetAll();
     }
-    public Microsoft.AspNetCore.Mvc.IActionResult OnPost()
+    public IActionResult OnPost()
     {
         if (string.IsNullOrWhiteSpace(Title))
         {
@@ -33,7 +37,7 @@ public class ChangesModel : PageModel
             return Page();
         }
 
-        _service.Add(Title);
+        _service.Add(Title, Description);
         return RedirectToPage();
     }
 }
