@@ -49,4 +49,10 @@ public class ChangesModel : PageModel
         _service.Close(Id);
         return RedirectToPage();
     }
+
+    public IActionResult OnPostReopen()
+    {
+        _service.Reopen(Id);
+        return RedirectToPage();
+    }
 }

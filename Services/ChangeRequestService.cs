@@ -40,4 +40,14 @@ public class ChangeRequestService
 
     }
 
+    public void Reopen(int id)
+    {
+        var item = _items.FirstOrDefault(x => x.Id == id);
+        if(item == null) return;
+        
+        item.Status = "Open";
+        item.UpdatedAt = DateTime.UtcNow;
+
+    }
+
 }
