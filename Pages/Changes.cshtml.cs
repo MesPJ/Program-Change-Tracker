@@ -20,6 +20,9 @@ public class ChangesModel : PageModel
     [BindProperty]
     public int Id {get; set;}
 
+    [BindProperty]
+    public ChangeStatus Status {get; set;}
+
     public ChangesModel(ChangeRequestService service)
     {
         _service = service;
@@ -53,6 +56,12 @@ public class ChangesModel : PageModel
     public IActionResult OnPostReopen()
     {
         _service.Reopen(Id);
+        return RedirectToPage();
+    }
+
+    public IActionResult OnPostUpdateStatus()
+    {
+        _service.UpdateStatus(Id, Status);
         return RedirectToPage();
     }
 }

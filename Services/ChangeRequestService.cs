@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.VisualBasic;
 using ProgramChangeTracker.Models;
 
 namespace ProgramChangeTracker.Services;
@@ -48,6 +49,15 @@ public class ChangeRequestService
         item.Status = ChangeStatus.Open;
         item.UpdatedAt = DateTime.UtcNow;
 
+    }
+
+    public void UpdateStatus(int id, ChangeStatus status)
+    {
+        var item = _items.FirstOrDefault(x => x.Id == id);
+        if(item == null) return;
+
+        item.Status = status;
+        item.UpdatedAt = DateTime.UtcNow;
     }
 
 }
