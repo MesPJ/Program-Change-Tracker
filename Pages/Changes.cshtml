@@ -13,48 +13,19 @@ else{
         @foreach (var item in Model.Items){
             <li>
                 #@item.Id - <strong>@item.Title</strong> (@item.Status)
-                @*@if(item.Status == ChangeStatus.Open)
-                {
-                    <form method="post" asp-page-handler="Close" style="display:inline;">
-                        <input type="hidden" name="Id" value="@item.Id" />
-                        <button type="submit">Close</button>
-                    </form>
-                }
-                @if(item.Status == ChangeStatus.Closed)
-                {
-                    <form method="post" asp-page-handler="Reopen" style="display:inline;">
-                        <input type="hidden" name="Id" value="@item.Id" />
-                        <button type="submit">Reopen</button>
-                    </form>
-                }*@
+                
                 <form method="post" asp-page-handler="UpdateStatus" style="display:inline;">
                     <input type="hidden" name="Id" value="@item.Id" />
+                    @{
+                        var openSelected = item.Status == ChangeStatus.Open ? "selected" : "";
+                        var reviewSelected = item.Status == ChangeStatus.InReview ? "selected" : "";
+                        var closedSelected = item.Status == ChangeStatus.Closed ? "selected" : "";
+                    }
                     <select name="Status" onchange="this.form.submit()">
-                        <option value="" selected>Select...</option>
-                        @if(item.Status == ChangeStatus.Open){
-
-                            <option value="Open" selected)>Open</option>
-                        }
-                        else{
-
-                            <option value="Open" >Open</option>
-                        }
-                        @if(item.Status == ChangeStatus.InReview){
-
-                            <option value="InReview" selected)>InReview</option>
-                        }
-                        else{
-
-                            <option value="InReview">InReview</option>
-                        }
-                        @if(item.Status == ChangeStatus.Closed){
-
-                            <option value="Closed" selected)>Closed</option>
-                        }
-                        else{
-
-                            <option value="Closed">Closed</option>
-                        }
+                        <option value="" enabled>Select...</option>
+                        <option value="Open" openSelected>Open</option>
+                        <option value="InReview" reviewSelected>In Review</option>
+                        <option value="Closed" closedSelected>Closed</option>
                     </select>
                 </form>
                 <div>@item.Description</div>
