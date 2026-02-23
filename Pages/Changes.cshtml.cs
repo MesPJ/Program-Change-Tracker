@@ -23,6 +23,8 @@ public class ChangesModel : PageModel
     [BindProperty]
     public ChangeStatus Status {get; set;}
 
+    public string? ErrorMessage {get; private set;}
+
     public ChangesModel(ChangeRequestService service)
     {
         _service = service;
@@ -38,7 +40,7 @@ public class ChangesModel : PageModel
     {
         if (string.IsNullOrWhiteSpace(Title))
         {
-            
+            ErrorMessage = "Title is required.";
             Items = _service.GetAll();
             return Page();
         }

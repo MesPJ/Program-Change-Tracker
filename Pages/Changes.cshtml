@@ -8,12 +8,18 @@
 @if (Model.Items.Count == 0){
     <p>No change requests yet.</p>
 }
+
 else{
     <ul>
+        @if(Model.ErrorMessage != null)
+        {
+            <p style="color:red;">@Model.ErrorMessage</p>
+        }
         @foreach (var item in Model.Items){
             <li>
                 #@item.Id - <strong>@item.Title</strong> (@item.Status)
                 
+
                 <form method="post" asp-page-handler="UpdateStatus" style="display:inline;">
                     <input type="hidden" name="Id" value="@item.Id" />
                     @{
