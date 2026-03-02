@@ -11,7 +11,7 @@ public class ChangeRequestService
 
     public List<ChangeRequest> GetAll()
     {
-        return _items;
+        return _items.Where(x => !x.IsDeleted).ToList();
     }
 
 
@@ -67,6 +67,15 @@ public class ChangeRequestService
 
         item.Title = title;
         item.Description = descrption;
+        item.UpdatedAt = DateTime.UtcNow;
+    }
+
+    public void Delete(int id)
+    {
+        var item = _items.FirstOrDefault(x => x.Id == id);
+        if(item == null) return;
+
+        item.IsDeleted = true;
         item.UpdatedAt = DateTime.UtcNow;
     }
 

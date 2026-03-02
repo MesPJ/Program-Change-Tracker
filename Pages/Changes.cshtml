@@ -55,6 +55,10 @@ else{
                             <option value="Closed" closedSelected>Closed</option>
                         </select>
                     </form>
+                    <form method="post" asp-page-handler="Delete" style="display:inline;">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <button type="submit">Delete</button>
+                    </form>
                     <div>@item.Description</div>
                     <div><small>Updated: @item.UpdatedAt.ToString("u")</small></div>
                 </li>

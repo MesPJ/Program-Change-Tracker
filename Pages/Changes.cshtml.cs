@@ -83,4 +83,10 @@ public class ChangesModel : PageModel
         _service.Update(Id, Title, Description);
         return RedirectToPage();
     }
+
+    public IActionResult OnPostDelete()
+    {
+        _service.Delete(Id);
+        return RedirectToPage();
+    }
 }

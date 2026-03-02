@@ -95,3 +95,4 @@ C:\Users\Patrick\Documents\dev\ProgramChangeTracker\obj\Debug\net10.0\refint\Pro
 C:\Users\Patrick\Documents\dev\ProgramChangeTracker\obj\Debug\net10.0\ProgramChangeTracker.pdb
 C:\Users\Patrick\Documents\dev\ProgramChangeTracker\obj\Debug\net10.0\ProgramChangeTracker.genruntimeconfig.cache
 C:\Users\Patrick\Documents\dev\ProgramChangeTracker\obj\Debug\net10.0\ref\ProgramChangeTracker.dll
+C:\Users\Patrick\Documents\dev\ProgramChangeTracker\obj\Debug\net10.0\ProgramChangeTracker.sourcelink.json
