@@ -25,6 +25,8 @@ public class ChangesModel : PageModel
 
     public string? ErrorMessage {get; private set;}
 
+    public int? EditId {get; private set;}
+
     public ChangesModel(ChangeRequestService service)
     {
         _service = service;
@@ -32,8 +34,9 @@ public class ChangesModel : PageModel
 
     public List<ChangeRequest> Items {get; private set;} = new();
 
-    public void OnGet()
+    public void OnGet(int? editId)
     {
+        EditId = editId;        
         Items = _service.GetAll();
     }
     public IActionResult OnPost()
@@ -64,6 +67,20 @@ public class ChangesModel : PageModel
     public IActionResult OnPostUpdateStatus()
     {
         _service.UpdateStatus(Id, Status);
+        return RedirectToPage();
+    }
+
+    public IActionResult OnPostSaveEdit()
+    {
+        if (string.IsNullOrWhiteSpace(Title))
+        {
+            ErrorMessage = "Title is required.";
+            Items = _service.GetAll();
+            EditId = Id;
+            return Page();
+        }
+
+        _service.Update(Id, Title, Description);
         return RedirectToPage();
     }
 }

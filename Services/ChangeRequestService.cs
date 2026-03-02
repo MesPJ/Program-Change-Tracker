@@ -60,4 +60,14 @@ public class ChangeRequestService
         item.UpdatedAt = DateTime.UtcNow;
     }
 
+    public void Update(int id, string title, string descrption)
+    {
+        var item = _items.FirstOrDefault(x => x.Id == id);
+        if(item == null) return;
+
+        item.Title = title;
+        item.Description = descrption;
+        item.UpdatedAt = DateTime.UtcNow;
+    }
+
 }

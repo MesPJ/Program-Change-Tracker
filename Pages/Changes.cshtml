@@ -16,27 +16,49 @@ else{
             <p style="color:red;">@Model.ErrorMessage</p>
         }
         @foreach (var item in Model.Items){
-            <li>
-                #@item.Id - <strong>@item.Title</strong> (@item.Status)
-                
-
-                <form method="post" asp-page-handler="UpdateStatus" style="display:inline;">
+            @if(Model.EditId == item.Id){
+                <form method="post" asp-page-handler="SaveEdit">
                     <input type="hidden" name="Id" value="@item.Id" />
-                    @{
-                        var openSelected = item.Status == ChangeStatus.Open ? "selected" : "";
-                        var reviewSelected = item.Status == ChangeStatus.InReview ? "selected" : "";
-                        var closedSelected = item.Status == ChangeStatus.Closed ? "selected" : "";
-                    }
-                    <select name="Status" onchange="this.form.submit()">
-                        <option value="" enabled>Select...</option>
-                        <option value="Open" openSelected>Open</option>
-                        <option value="InReview" reviewSelected>In Review</option>
-                        <option value="Closed" closedSelected>Closed</option>
-                    </select>
+
+                    <div>
+                        <label>Title</label><br />
+                        <input name="Title" value="@item.Title" />
+                    </div>
+
+                    <div>
+                        <label>Description</label><br />
+                        <textarea name="Description">@item.Description</textarea>
+                    </div>
+
+                    <button type="submit">Save</button>
+                    <a asp-page="/Changes">Cancel</a>
                 </form>
-                <div>@item.Description</div>
-                <div><small>Updated: @item.UpdatedAt.ToString("u")</small></div>
-            </li>
+            }
+            else
+            {            
+                <li>
+                    #@item.Id - <strong>@item.Title</strong> (@item.Status)
+                    <a asp-page="/Changes" asp-route-editId="@item.Id">Edit</a>
+                    <a asp-page="/Changes">Cancel</a>
+
+                    <form method="post" asp-page-handler="UpdateStatus" style="display:inline;">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        @{
+                            var openSelected = item.Status == ChangeStatus.Open ? "selected" : "";
+                            var reviewSelected = item.Status == ChangeStatus.InReview ? "selected" : "";
+                            var closedSelected = item.Status == ChangeStatus.Closed ? "selected" : "";
+                        }
+                        <select name="Status" onchange="this.form.submit()">
+                            <option value="" enabled>Select...</option>
+                            <option value="Open" openSelected>Open</option>
+                            <option value="InReview" reviewSelected>In Review</option>
+                            <option value="Closed" closedSelected>Closed</option>
+                        </select>
+                    </form>
+                    <div>@item.Description</div>
+                    <div><small>Updated: @item.UpdatedAt.ToString("u")</small></div>
+                </li>
+            }
         }
     </ul>
 }
